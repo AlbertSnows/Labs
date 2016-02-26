@@ -1,0 +1,128 @@
+import java.util.*; 
+
+
+public class Lab5{
+	public static void main(String[] args){
+		Scanner keyboard = new Scanner(System.in); 
+		String password; 
+		String confirmPassword; 
+		String stringLetter; 
+
+		
+		int digit; 
+		
+		int countSpecials; 
+		int indexExit = 0;
+		
+		char letter; 
+		char[] specialChars = {'!', '@', '#', '$', '*', }; 
+		//***if (Arrays.asList(item1, item2, item3).contains(string))
+				
+		boolean exitWhile = false;
+		boolean hasSpecial = false; 
+		boolean isSpecial = false; 
+		boolean hasEight = false; 
+		boolean hasDigit = false; 
+		
+		int checkValid = 0; 
+		boolean isValid = false; 
+		
+while (exitWhile != true){
+
+		System.out.println("Type in a password. \nIt must meet the following conditions:"
+				+ "\nIt must be a minimum of 8 characters."); 
+		System.out.println("It must contain one of these characters: !, @, #, $, or *"); 
+		System.out.println("It must also contain at least one digit.");
+		System.out.println("Enter a '/' to exit the program. Do not use a '/' in your password.");
+		System.out.print("Type your password here: "); 
+		password = keyboard.nextLine(); 
+		
+		indexExit = password.indexOf('/'); 
+		
+		if (indexExit > -1){
+			exitWhile = true; 
+			indexExit = 0;
+			System.out.println("Goodbye!"); 
+			System.exit(0);
+		}
+		
+		for (checkValid = 0; checkValid < password.length(); checkValid++)
+			{
+				letter = password.charAt(checkValid); 			
+				for(countSpecials = 0; countSpecials < specialChars.length; countSpecials++){
+					if (letter == specialChars[countSpecials]){
+						System.out.println(); 
+							 isSpecial = true; 
+						}
+				}
+				
+				if (isSpecial == true){
+					System.out.println("This letter is a special character!");
+					isSpecial = false; 
+				}
+				else if (Character.isLetter(letter)){
+					System.out.println("Regular character: " + letter);
+				}
+				else {
+					stringLetter = Character.toString(letter); 
+					digit = Integer.parseInt(stringLetter); 
+					System.out.println("Digit: " + digit);
+					hasDigit = true; 
+				}
+				
+				switch (letter){
+				case '!':
+					System.out.println("Special Character: " + letter);
+					hasSpecial = true; 
+					break; 
+				case '@': 
+					System.out.println("Special Character: " + letter);
+					hasSpecial = true; 
+					break; 
+				case '#': 
+					System.out.println("Special Character: " + letter);
+					hasSpecial = true; 
+					break; 
+				case '$':
+					System.out.println("Special Character: " + letter);
+					hasSpecial = true; 
+					break; 
+				case '*': 
+					System.out.println("Special Character: " + letter);
+					hasSpecial = true; 
+					break; 
+				default: 
+					break; 
+					
+				}//end switch statement
+			}//end for loop
+		
+	
+		System.out.println("Password: " + password); 
+		System.out.println("Password length: " + password.length());
+		
+		if (password.length() < 8){
+			System.out.println("Make sure your password is at least 8 characters long!"); 
+	
+		} //password must be at least 8 characters
+		else { hasEight = true; }
+
+		if(hasSpecial == true && hasEight == true && hasDigit == true){ isValid = true;}
+		if (isValid == true){
+			System.out.print("That's a valid password! Please re-enter it for confrimation"); 
+			confirmPassword = keyboard.nextLine(); 
+			if (password.equals(confirmPassword)){
+				System.out.println("Great!"); 
+			}
+			
+		}
+		
+				
+	System.out.println(); 
+	
+}
+
+
+	keyboard.close(); 
+	}//end main
+}//end class
