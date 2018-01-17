@@ -1,2 +1,2 @@
 # Labs
-Wut
+Java fun from an old class
